@@ -1,0 +1,565 @@
+-- phpMyAdmin SQL Dump
+-- version 3.1.3.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Waktu pembuatan: 03. Desember 2015 jam 08:03
+-- Versi Server: 5.1.33
+-- Versi PHP: 5.2.9
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `billing`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `blok`
+--
+
+CREATE TABLE IF NOT EXISTS `blok` (
+  `id` tinyint(11) NOT NULL AUTO_INCREMENT,
+  `namablok` varchar(30) NOT NULL DEFAULT '',
+  `isi` text NOT NULL,
+  `posisi` tinyint(2) NOT NULL DEFAULT '0',
+  `published` int(1) NOT NULL DEFAULT '0',
+  `ordering` int(5) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data untuk tabel `blok`
+--
+
+INSERT INTO `blok` (`id`, `namablok`, `isi`, `posisi`, `published`, `ordering`) VALUES
+(2, 'Location Map', '<img src="images/map.jpg">', 1, 1, 2),
+(6, 'Dasdasd', 'sadasd', 0, 1, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `bukutamu`
+--
+
+CREATE TABLE IF NOT EXISTS `bukutamu` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `sekarang` varchar(12) DEFAULT NULL,
+  `nama` varchar(50) DEFAULT NULL,
+  `email` varchar(60) DEFAULT NULL,
+  `homepage` varchar(60) DEFAULT NULL,
+  `alamat` varchar(100) DEFAULT NULL,
+  `komentar` text,
+  `jawab` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data untuk tabel `bukutamu`
+--
+
+INSERT INTO `bukutamu` (`id`, `sekarang`, `nama`, `email`, `homepage`, `alamat`, `komentar`, `jawab`) VALUES
+(1, '20-Aug-2015', 'Hari Pratomo', 'admin@klatenweb.com', 'http://klatenweb.com', 'Indonesia', 'Information about the school have been distributed properly through this website', 'Thank you very much for your visit and your comments'),
+(2, '20-Aug-2015', 'Elisa Putri', 'elisaputri@websiteku.com', 'http://klatenlisa.com', 'Indonesia', 'Trial shipment testimonial', 'Thank you very much for your visit and your comments'),
+(3, '20-Aug-2015', 'Kartika Kalista', 'kartika@klatensite.com', 'http://kartikalista.com', 'Indonesia', 'It is amazing, is already available in the website features discussion forums this school', 'Thank you very much for your visit and your comments');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `bukutamu_config`
+--
+
+CREATE TABLE IF NOT EXISTS `bukutamu_config` (
+  `config` text NOT NULL,
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data untuk tabel `bukutamu_config`
+--
+
+INSERT INTO `bukutamu_config` (`config`, `id`) VALUES
+('a:2:{s:5:"limit";i:8;s:4:"char";i:500;}', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `client`
+--
+
+CREATE TABLE IF NOT EXISTS `client` (
+  `id` bigint(30) NOT NULL AUTO_INCREMENT,
+  `user` varchar(99) NOT NULL,
+  `hosting` varchar(99) NOT NULL DEFAULT 'Without Hosting',
+  `domain1` varchar(455) NOT NULL,
+  `domain2` varchar(99) NOT NULL DEFAULT '1',
+  `domain3` varchar(99) NOT NULL,
+  `domain` varchar(44) NOT NULL,
+  `bayar` varchar(22) NOT NULL DEFAULT 'Unpaid',
+  `tanggal` date NOT NULL,
+  `cpanel` varchar(99) NOT NULL,
+  `cpaneluser` varchar(99) NOT NULL,
+  `cpanelpass` varchar(99) NOT NULL,
+  `pesan` text NOT NULL,
+  `stat` varchar(1) NOT NULL DEFAULT '0',
+  `lama` varchar(1) NOT NULL DEFAULT '1',
+  `transfer` varchar(33) NOT NULL,
+  `paypal` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
+
+--
+-- Dumping data untuk tabel `client`
+--
+
+INSERT INTO `client` (`id`, `user`, `hosting`, `domain1`, `domain2`, `domain3`, `domain`, `bayar`, `tanggal`, `cpanel`, `cpaneluser`, `cpanelpass`, `pesan`, `stat`, `lama`, `transfer`, `paypal`) VALUES
+(28, 'tomo', 'Without Hosting', 'klatenweb', '.net', '', 'klatenweb.net', 'Paid', '2016-12-02', 'http://klatenweb.net/cpanel', '', '', '', '1', '1', '', 0),
+(38, 'tomo', 'Paket Basic', '', '1', 'klatenweb.com', 'klatenweb.com', 'Paid', '2016-12-02', 'http://klatenweb.com/cpanel', 'klatenweb', '123456', '', '1', '1', '', 0),
+(35, 'tomo', 'Paket Unlimited', 'situsita', '.com', '', 'situsita.com', 'Paid', '2016-12-02', 'http://situsita.com/cpanel', 'situsita', '123456', '', '1', '1', '', 0),
+(34, 'tomo', 'Paket Unlimited', 'klatensite', '.com', '', 'klatensite.com', 'Paid', '2016-12-02', 'http://klatensite.com/cpanel', 'klatensite', '123456', '', '1', '1', '', 0),
+(37, 'tomo', 'Without Hosting', 'grosir-mamypoko', '.com', '', 'grosir-mamypoko.com', 'Paid', '2016-12-02', 'http://grosir-mamypoko.com/cpanel', 'grosir', '123456', '', '1', '1', '234DFR2', 0),
+(40, 'tomo', 'Paket WP Extreme', '', '1', 'suryaonline.com', 'suryaonline.com', 'Paid', '2016-12-03', 'http://suryaonline.com/cpanel', 'suryaon', '123456', '', '1', '1', '', 0),
+(41, 'elisa', 'Paket WP Unlimited', 'elisaputri', '.com', '', 'elisaputri.com', 'Paid', '0000-00-00', '', '', '', '', '0', '2', '', 1),
+(42, 'elisa', 'Without Hosting', 'klatenlisa', '.com', '', 'klatenlisa.com', 'Unpaid', '0000-00-00', '', '', '', '', '0', '1', '', 0),
+(43, 'tomo', 'Paket Basic', '', '1', 'klatenbersinar.com', 'klatenbersinar.com', 'Unpaid', '0000-00-00', '', '', '', '', '0', '2', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `domain`
+--
+
+CREATE TABLE IF NOT EXISTS `domain` (
+  `id` bigint(44) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(44) NOT NULL,
+  `harga` varchar(44) NOT NULL,
+  `view` varchar(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data untuk tabel `domain`
+--
+
+INSERT INTO `domain` (`id`, `nama`, `harga`, `view`) VALUES
+(6, '.com', '8', '1'),
+(8, '.net', '7.5', '1'),
+(9, '.info', '9', '1'),
+(10, '.org', '9', '1'),
+(1, '1', '0', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `halaman`
+--
+
+CREATE TABLE IF NOT EXISTS `halaman` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `judul` varchar(80) NOT NULL DEFAULT '',
+  `konten` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=54 ;
+
+--
+-- Dumping data untuk tabel `halaman`
+--
+
+INSERT INTO `halaman` (`id`, `judul`, `konten`) VALUES
+(1, 'Prosedure Order', '<p>You must register before the transaction, after a successful registration and login and perform transactions with members click menu on the left.</p>'),
+(50, 'Profile Company', '<p>Fill in the Settings page ..</p>'),
+(51, 'Client', '<p>Fill in the Settings page ..</p>'),
+(52, 'Domain Price', '<p>Fill in the Settings page ..</p>'),
+(53, 'Hosting Package', '<p>Fill in the Settings page ..</p>');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `hosting`
+--
+
+CREATE TABLE IF NOT EXISTS `hosting` (
+  `id` bigint(44) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(44) NOT NULL,
+  `harga` varchar(44) NOT NULL,
+  `view` varchar(1) NOT NULL DEFAULT '0',
+  `ket` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+
+--
+-- Dumping data untuk tabel `hosting`
+--
+
+INSERT INTO `hosting` (`id`, `nama`, `harga`, `view`, `ket`) VALUES
+(6, 'Paket Unlimited', '100', '1', 'This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+(8, 'Paket Basic', '50', '1', 'This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+(1, 'Tanpa Hosting', '0', '0', ''),
+(13, 'Paket WP Basic', '25', '1', 'This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+(14, 'Paket WP Extreme', '75', '1', 'This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+(15, 'Paket WP Unlimited', '125', '1', 'This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `menu`
+--
+
+CREATE TABLE IF NOT EXISTS `menu` (
+  `id` int(2) NOT NULL AUTO_INCREMENT,
+  `menu` varchar(50) NOT NULL DEFAULT '',
+  `url` varchar(127) NOT NULL DEFAULT '',
+  `published` int(1) NOT NULL DEFAULT '1',
+  `ordering` int(2) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+
+--
+-- Dumping data untuk tabel `menu`
+--
+
+INSERT INTO `menu` (`id`, `menu`, `url`, `published`, `ordering`) VALUES
+(1, 'Top Menu', '#', 1, 1),
+(2, 'Left Menu', '#', 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `mod_forum`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_forum` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `forum_name` varchar(255) NOT NULL DEFAULT '',
+  `forum_desc` text NOT NULL,
+  `forum_replies` int(12) NOT NULL DEFAULT '0',
+  `forum_lastpost` varchar(255) NOT NULL DEFAULT '',
+  `lock` int(1) NOT NULL DEFAULT '0',
+  `maxpost` int(10) NOT NULL DEFAULT '0',
+  `hide` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data untuk tabel `mod_forum`
+--
+
+INSERT INTO `mod_forum` (`id`, `forum_name`, `forum_desc`, `forum_replies`, `forum_lastpost`, `lock`, `maxpost`, `hide`) VALUES
+(4, 'Dedicate Server', 'This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 0, '', 0, 0, 0),
+(3, 'PHP Script Billing Hosting', 'This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 0, '', 0, 500, 0),
+(5, 'Domain Name', 'This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 0, '', 0, 500, 0),
+(6, 'Submit Ticket', 'This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 0, '', 0, 500, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `mod_forum_a`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_forum_a` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) NOT NULL DEFAULT '',
+  `avatar` varchar(200) NOT NULL,
+  `signature` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+
+--
+-- Dumping data untuk tabel `mod_forum_a`
+--
+
+INSERT INTO `mod_forum_a` (`id`, `username`, `avatar`, `signature`) VALUES
+(1, 'admin', 'images/adminku.png', '');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `mod_forum_t`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_forum_t` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `thread_name` varchar(255) NOT NULL DEFAULT '',
+  `thread_reply` varchar(50) NOT NULL DEFAULT '',
+  `thread_desc` text NOT NULL,
+  `forum_id` int(12) NOT NULL DEFAULT '0',
+  `thread_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `thread_user` varchar(16) NOT NULL DEFAULT '',
+  `thread_parent` int(12) NOT NULL DEFAULT '0',
+  `thread_view` int(12) NOT NULL DEFAULT '0',
+  `thread_lock` int(1) NOT NULL DEFAULT '0',
+  `thread_a` int(2) NOT NULL DEFAULT '0',
+  `thread_s` int(2) NOT NULL DEFAULT '0',
+  `ip` varchar(40) NOT NULL DEFAULT '',
+  `useragent` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+
+--
+-- Dumping data untuk tabel `mod_forum_t`
+--
+
+INSERT INTO `mod_forum_t` (`id`, `thread_name`, `thread_reply`, `thread_desc`, `forum_id`, `thread_date`, `thread_user`, `thread_parent`, `thread_view`, `thread_lock`, `thread_a`, `thread_s`, `ip`, `useragent`) VALUES
+(12, 'Tentang Kenekalan Remaja', '', '<p>pada sekarang ini kenakalan remaja merupakan masalah serius bagaimana sekolah menangani hal ini</p>', 26, '2014-10-11 05:28:03', 'salaffudin', 0, 7, 0, 0, 0, '39.253.211.110', 'Mozilla/5.0 (Windows NT 5.1; rv:33.0) Gecko/20100101 Firefox/33.0'),
+(13, '', 'Tentang Kenekalan Remaja', '<p>Terimakasih sudah posting kenakalan remaja merupakan tugas kita bersama</p>', 26, '2014-10-11 05:30:25', 'admin', 12, 0, 0, 0, 0, '39.253.211.110', 'Mozilla/5.0 (Windows NT 5.1; rv:33.0) Gecko/20100101 Firefox/33.0'),
+(14, '', 'Tentang Kenekalan Remaja', '<p>ok</p>', 26, '2014-10-12 21:10:48', 'viva', 12, 0, 0, 0, 0, '114.124.28.87', 'Mozilla/5.0 (Windows NT 5.1; rv:33.0) Gecko/20100101 Firefox/33.0'),
+(15, '', 'Tentang Kenekalan Remaja', '<p>coba--coba</p>', 26, '2014-10-12 21:12:42', 'viva', 12, 0, 0, 0, 0, '114.124.28.87', 'Mozilla/5.0 (Windows NT 5.1; rv:33.0) Gecko/20100101 Firefox/33.0'),
+(19, 'Resposive Design', '', '<p>I like it, simple and easy to use</p>', 3, '2015-12-02 21:08:42', 'tomo', 0, 1, 0, 0, 0, '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `mod_online`
+--
+
+CREATE TABLE IF NOT EXISTS `mod_online` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` int(1) NOT NULL DEFAULT '0',
+  `visitor` varchar(255) DEFAULT NULL,
+  `ipd` varchar(30) NOT NULL DEFAULT '',
+  `info` varchar(255) NOT NULL DEFAULT '',
+  `timevisit` int(11) NOT NULL DEFAULT '0',
+  `halaman` text,
+  `mdhash` varchar(60) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data untuk tabel `mod_online`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pcomment`
+--
+
+CREATE TABLE IF NOT EXISTS `pcomment` (
+  `id` int(10) NOT NULL,
+  `pengirim` int(10) NOT NULL,
+  `penerima` int(10) NOT NULL,
+  `date` varchar(100) NOT NULL,
+  `gambar` varchar(200) NOT NULL,
+  `direktori` varchar(150) NOT NULL,
+  `komen` text CHARACTER SET cp866 NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `pcomment`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pengguna`
+--
+
+CREATE TABLE IF NOT EXISTS `pengguna` (
+  `UserId` int(15) NOT NULL AUTO_INCREMENT,
+  `user` varchar(250) NOT NULL DEFAULT '',
+  `password` text NOT NULL,
+  `email` varchar(250) NOT NULL DEFAULT 'user@web-school.sch.id',
+  `level` enum('Administrator','User') NOT NULL DEFAULT 'User',
+  `tipe` varchar(250) NOT NULL DEFAULT 'Aktif',
+  `nama` varchar(55) NOT NULL,
+  `hp` varchar(21) NOT NULL,
+  `alamat` text NOT NULL,
+  PRIMARY KEY (`UserId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=58 ;
+
+--
+-- Dumping data untuk tabel `pengguna`
+--
+
+INSERT INTO `pengguna` (`UserId`, `user`, `password`, `email`, `level`, `tipe`, `nama`, `hp`, `alamat`) VALUES
+(17, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@website.com', 'Administrator', 'aktif', 'Administrator', '', ''),
+(54, 'tomo', 'bcea36077206c2436ff2e3e3b836f6e9', 'admin@klatenweb.com', 'User', 'Aktif', 'Hari Pratomo', '08123123213', 'Klaten'),
+(57, 'elisa', '8070b0b01d9042fdbc54f095bd2832ef', 'elisa@website.com', 'User', 'aktif', 'Elisa Putri', '081', 'Surabaya');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `posted_ip`
+--
+
+CREATE TABLE IF NOT EXISTS `posted_ip` (
+  `id` bigint(21) NOT NULL AUTO_INCREMENT,
+  `file` varchar(100) NOT NULL DEFAULT '',
+  `ip` varchar(100) NOT NULL DEFAULT '',
+  `time` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=87 ;
+
+--
+-- Dumping data untuk tabel `posted_ip`
+--
+
+INSERT INTO `posted_ip` (`id`, `file`, `ip`, `time`) VALUES
+(86, 'guestbook', '127.0.0.1', 1440035701);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `sensor`
+--
+
+CREATE TABLE IF NOT EXISTS `sensor` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `word` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data untuk tabel `sensor`
+--
+
+INSERT INTO `sensor` (`id`, `word`) VALUES
+(1, 'Kontol'),
+(2, 'Anjing'),
+(3, 'Anjeng'),
+(4, 'anjrit'),
+(5, 'memek'),
+(6, 'tempek'),
+(7, 'Bangsat'),
+(8, 'fuck'),
+(9, 'eSDeCe');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `slider`
+--
+
+CREATE TABLE IF NOT EXISTS `slider` (
+  `id` bigint(30) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(99) NOT NULL,
+  `foto` varchar(99) NOT NULL,
+  `ukuran` varchar(90) NOT NULL,
+  `link` varchar(99) NOT NULL,
+  `ket` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=40 ;
+
+--
+-- Dumping data untuk tabel `slider`
+--
+
+INSERT INTO `slider` (`id`, `nama`, `foto`, `ukuran`, `link`, `ket`) VALUES
+(36, 'Title Slider First', '800.png', '800px x 300px', '#', 'Fill explanation or description of the slider, you can add a few words in it, log in as an administrator and click menu management plus slider and then click on the slider or data, and input the information was in the form caption'),
+(37, 'Title Slider Two', '800.png', '800px x 300px', '#', 'Fill explanation or description of the slider, you can add a few words in it, log in as an administrator and click menu management plus slider and then click on the slider or data, and input the information was in the form caption'),
+(38, 'Title Slider Three', '800.png', '800px x 300px', '#', 'Fill explanation or description of the slider, you can add a few words in it, log in as an administrator and click menu management plus slider and then click on the slider or data, and input the information was in the form caption'),
+(39, 'Title Slider Four', '800.png', '800px x 300px', '#', 'Fill explanation or description of the slider, you can add a few words in it, log in as an administrator and click menu management plus slider and then click on the slider or data, and input the information was in the form caption');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `stat_browse`
+--
+
+CREATE TABLE IF NOT EXISTS `stat_browse` (
+  `pjudul` varchar(255) NOT NULL DEFAULT '',
+  `ppilihan` text NOT NULL,
+  `pjawaban` text NOT NULL,
+  `id` int(2) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data untuk tabel `stat_browse`
+--
+
+INSERT INTO `stat_browse` (`pjudul`, `ppilihan`, `pjawaban`, `id`) VALUES
+('Browser yang sering digunakan dalam mengakses halaman ini', 'Netscape#Opera#MSIE 4.0#MSIE 5.0#MSIE 6.0#Lynx#WebTV#Konqueror#bot#Other', '83781#192#0#2#138#0#0#0#1685#730', 1),
+('Operating system', 'Windows#Mac#Linux#FreeBSD#SunOS#IRIX#BeOS#OS/2#AIX#Other', '75021#97#283#0#0#0#0#0#0#11153', 2),
+('Pengunjung berdasarkan hari', 'Minggu#Senin#Selasa#Rabu#Kamis#Jumat#Sabtu', '11720#2953#42082#15443#4224#2858#7282', 3),
+('Pengunjung berdasarkan bulan', 'Januari#Februari#Maret#April#Mei#Juni#Juli#Agustus#September#Oktober#November#Desember', '1166#389#16#35#220#3443#71759#4033#733#3943#23#795', 4),
+('Pengunjung berdasarkan jam', '0:00 - 0:59#1:00 - 1:59#2:00 - 2:59#3:00 - 3:59#4:00 - 4:59#5:00 - 5:59#6:00 - 6:59#7:00 - 7:59#8:00 - 8:59#9:00 - 9:59#10:00 - 10:59#11:00 - 11:59#12:00 - 12:59#13:00 - 13:59#14:00 - 14:59#15:00 - 15:59#16:00 - 16:59#17:00 - 17:59#18:00 - 18:59#19:00 - 19:59#20:00 - 20:59#21:00 - 21:59#22:00 - 22:59#23:00 - 23:59', '537#800#400#389#806#713#693#1041#3659#7866#7733#5636#9506#7171#6924#2581#2620#9510#7464#2301#2273#2559#2177#1205', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `submenu`
+--
+
+CREATE TABLE IF NOT EXISTS `submenu` (
+  `id` int(2) NOT NULL AUTO_INCREMENT,
+  `menu` varchar(50) NOT NULL DEFAULT '',
+  `url` varchar(127) NOT NULL DEFAULT '',
+  `parent` int(2) NOT NULL DEFAULT '0',
+  `published` int(1) NOT NULL DEFAULT '1',
+  `ordering` int(2) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
+
+--
+-- Dumping data untuk tabel `submenu`
+--
+
+INSERT INTO `submenu` (`id`, `menu`, `url`, `parent`, `published`, `ordering`) VALUES
+(35, 'Testimonial', 'index.php?pilih=guestbook&amp;modul=yes', 1, 1, 5),
+(34, 'Forum', 'index.php?pilih=forum&amp;modul=yes', 1, 1, 4),
+(32, 'Status Server', 'index.php?pilih=status&amp;modul=yes', 2, 1, 5),
+(33, 'Check the Expiration', 'index.php?pilih=aktif&amp;modul=yes', 2, 1, 6),
+(31, 'Whois? Lookup', 'index.php?pilih=whois&amp;modul=yes', 2, 1, 4),
+(29, 'Hosting Package', 'index.php?pilih=hal&amp;id=53', 2, 1, 2),
+(30, 'Procedures Order', 'index.php?pilih=hal&amp;id=1', 2, 1, 3),
+(28, 'Domain Price', 'index.php?pilih=hal&amp;id=52', 2, 1, 1),
+(26, 'Contact Us', 'index.php?pilih=contact&amp;modul=yes', 1, 1, 6),
+(23, 'Register', 'index.php?pilih=user&aksi=register', 1, 1, 1),
+(24, 'Login Area', 'index.php?pilih=login&amp;modul=yes', 1, 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_setting`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_setting` (
+  `Meta_Desc` varchar(255) NOT NULL,
+  `Meta_Key` varchar(255) NOT NULL,
+  `Web_Title` varchar(255) NOT NULL,
+  `Web_Desc` varchar(255) NOT NULL,
+  `Email_Admin` varchar(100) NOT NULL,
+  `Url_Situs` varchar(225) NOT NULL,
+  `Paypal_Account` varchar(44) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `tb_setting`
+--
+
+INSERT INTO `tb_setting` (`Meta_Desc`, `Meta_Key`, `Web_Title`, `Web_Desc`, `Email_Admin`, `Url_Situs`, `Paypal_Account`) VALUES
+('PHP Script Simple Billing Hosting', 'PHP Script Simple Billing Hosting', 'Simple Billing Hosting', 'PHP Script Simple Billing Hosting', 'admin@klatenmyhosting.com', 'http://klatenmyhosting.com', 'paypal@klatenweb.com');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `transaksi`
+--
+
+CREATE TABLE IF NOT EXISTS `transaksi` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `client` text NOT NULL,
+  `tglbayar` date NOT NULL,
+  `jam` time NOT NULL,
+  `jumlah` varchar(40) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+
+--
+-- Dumping data untuk tabel `transaksi`
+--
+
+INSERT INTO `transaksi` (`id`, `client`, `tglbayar`, `jam`, `jumlah`) VALUES
+(32, 'd645920e395fedad7bbbed0eca3fe2e0', '2015-12-03', '07:42:29', '75'),
+(31, '33e75ff09dd601bbe69f351039152189', '2015-12-02', '19:57:45', '7.5'),
+(30, 'e369853df766fa44e1ed0ff613f563bd', '2015-12-02', '19:57:41', '108'),
+(29, '1c383cd30b7c298ab50293adfecb7b18', '2015-12-02', '19:57:37', '108'),
+(28, 'a5bfc9e07964f8dddeb95fc584cd965d', '2015-12-02', '19:57:28', '8'),
+(27, 'a5771bce93e200c36f7cd9dfd0e5deaa', '2015-12-02', '19:55:16', '50');

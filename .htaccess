@@ -1,0 +1,16 @@
+RewriteEngine On
+
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+
+RewriteCond %{REQUEST_FILENAME} -d
+
+RewriteRule ^.*$ - [S=84]
+
+
+
+RewriteRule ^article-([0-9]{1,})-([^/.]{1,}).html$ ./?pilih=news&modul=yes&aksi=lihat&id=$1&judul=$2 [QSA,L]
+RewriteRule ^event-([0-9]{1,})-([^/.]{1,}).html$ ./?pilih=news&modul=yes&aksi=lihat&id=$1&judul=$2 [QSA,L]
+
+RewriteRule ^index.html$ index.php [QSA,L]
